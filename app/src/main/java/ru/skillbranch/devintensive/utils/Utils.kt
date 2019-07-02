@@ -13,7 +13,7 @@ object Utils {
         return firstName to lastName
     }
 
-    fun translitiration(payload: String, divider:String = " "): String {
+    fun transliteration(payload: String, divider:String = " "): String {
         var nickNew:String?
         nickNew = payload
         nickNew = nickNew.replace("а", "a")
