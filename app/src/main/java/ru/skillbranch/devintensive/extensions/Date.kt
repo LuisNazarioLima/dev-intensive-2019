@@ -41,7 +41,7 @@ fun Date.humanizeDiff(date: Date = Date()) : String {
             //in 75* SECOND..45* MINUTE -> "N минут назад"
             in 46 * MINUTE..76 * MINUTE -> "час назад"
             in 76 * MINUTE..2 * HOUR -> "2 часа назад"
-            in 2 * HOUR..5 * HOUR -> "${time / HOUR} часа назад"
+            in 2 * HOUR..4 * HOUR -> "${time / HOUR} часа назад"
             in 5 * HOUR..21 * HOUR -> "${time / HOUR} часов назад"
             in 21 * HOUR..22 * HOUR -> "${time / HOUR} час назад"
             in 22 * HOUR..27 * HOUR -> "день назад"
