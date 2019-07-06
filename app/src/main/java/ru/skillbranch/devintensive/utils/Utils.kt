@@ -87,7 +87,6 @@ object Utils {
                         "Э" -> "E"
                         "Ю" -> "YU"
                         "Я" -> "YA"
-                        " " -> "_"
                     else -> char
                 }
             }
