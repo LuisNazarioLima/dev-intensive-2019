@@ -15,7 +15,7 @@ object Utils {
 
     fun transliteration(payload: String, divider: String = " "): String {
         var nickNew: String = ""
-
+        //if (divider.isBlank()) {divider = " "}
         if (payload.isBlank()) {
             return ""
         } else {
@@ -87,10 +87,11 @@ object Utils {
                         "Э" -> "E"
                         "Ю" -> "YU"
                         "Я" -> "YA"
+                        divider -> "_"
                     else -> char
                 }
             }
-            nickNew = nickNew.replace(divider, "_")
+            //nickNew = nickNew.replace(divider, "_")
             return nickNew
         }
     }
