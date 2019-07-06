@@ -13,81 +13,87 @@ object Utils {
         return firstName to lastName
     }
 
-    fun transliteration(payload: String, divider:String = " "): String {
-        var nickNew:String?
-        nickNew = payload
-        nickNew = nickNew.replace("а", "a")
-        nickNew = nickNew.replace("б", "b")
-        nickNew = nickNew.replace("в", "v")
-        nickNew = nickNew.replace("г", "g")
-        nickNew = nickNew.replace("д", "d")
-        nickNew = nickNew.replace("е", "e")
-        nickNew = nickNew.replace("ё", "e")
-        nickNew = nickNew.replace("ж", "zh")
-        nickNew = nickNew.replace("з", "z")
-        nickNew = nickNew.replace("и", "i")
-        nickNew = nickNew.replace("й", "i")
-        nickNew = nickNew.replace("к", "k")
-        nickNew = nickNew.replace("л", "l")
-        nickNew = nickNew.replace("м", "m")
-        nickNew = nickNew.replace("н", "n")
-        nickNew = nickNew.replace("о", "o")
-        nickNew = nickNew.replace("п", "p")
-        nickNew = nickNew.replace("р", "r")
-        nickNew = nickNew.replace("с", "s")
-        nickNew = nickNew.replace("т", "t")
-        nickNew = nickNew.replace("у", "u")
-        nickNew = nickNew.replace("ф", "f")
-        nickNew = nickNew.replace("х", "h")
-        nickNew = nickNew.replace("ц", "c")
-        nickNew = nickNew.replace("ч", "ch")
-        nickNew = nickNew.replace("ш", "sh")
-        nickNew = nickNew.replace("щ", "sh'")
-        nickNew = nickNew.replace("ъ", "")
-        nickNew = nickNew.replace("ы", "i")
-        nickNew = nickNew.replace("ь", "")
-        nickNew = nickNew.replace("э", "e")
-        nickNew = nickNew.replace("ю", "yu")
-        nickNew = nickNew.replace("я", "ya")
+    fun transliteration(payload: String, divider: String = " "): String {
+        var nickNew: String = ""
 
-        nickNew = nickNew.replace("А", "A")
-        nickNew = nickNew.replace("Б", "B")
-        nickNew = nickNew.replace("В", "V")
-        nickNew = nickNew.replace("Г", "G")
-        nickNew = nickNew.replace("Д", "D")
-        nickNew = nickNew.replace("Е", "E")
-        nickNew = nickNew.replace("Ё", "E")
-        nickNew = nickNew.replace("Ж", "ZH")
-        nickNew = nickNew.replace("З", "Z")
-        nickNew = nickNew.replace("И", "I")
-        nickNew = nickNew.replace("Й", "I")
-        nickNew = nickNew.replace("К", "K")
-        nickNew = nickNew.replace("Л", "L")
-        nickNew = nickNew.replace("М", "M")
-        nickNew = nickNew.replace("Н", "N")
-        nickNew = nickNew.replace("О", "O")
-        nickNew = nickNew.replace("П", "P")
-        nickNew = nickNew.replace("Р", "R")
-        nickNew = nickNew.replace("С", "S")
-        nickNew = nickNew.replace("Т", "T")
-        nickNew = nickNew.replace("У", "U")
-        nickNew = nickNew.replace("Ф", "F")
-        nickNew = nickNew.replace("Х", "H")
-        nickNew = nickNew.replace("Ц", "C")
-        nickNew = nickNew.replace("Ч", "CH")
-        nickNew = nickNew.replace("Ш", "SH")
-        nickNew = nickNew.replace("Щ", "SH'")
-        nickNew = nickNew.replace("Ъ", "")
-        nickNew = nickNew.replace("Ы", "I")
-        nickNew = nickNew.replace("Ь", "")
-        nickNew = nickNew.replace("Э", "E")
-        nickNew = nickNew.replace("Ю", "YU")
-        nickNew = nickNew.replace("Я", "YA")
-
-        nickNew = nickNew.replace(" ", "_")
-        nickNew = nickNew.replace(divider, "_")
-
-        return nickNew
+        if (payload.isBlank()) {
+            return ""
+        } else {
+            for (char in payload) {
+                nickNew += when (char.toString()) {
+                        "а" -> "a"
+                        "б" -> "b"
+                        "в" -> "v"
+                        "г" -> "g"
+                        "д" -> "d"
+                        "е" -> "e"
+                        "ё" -> "e"
+                        "ж" -> "zh"
+                        "з" -> "z"
+                        "и" -> "i"
+                        "й" -> "i"
+                        "к" -> "k"
+                        "л" -> "l"
+                        "м" -> "m"
+                        "н" -> "n"
+                        "о" -> "o"
+                        "п" -> "p"
+                        "р" -> "r"
+                        "с" -> "s"
+                        "т" -> "t"
+                        "у" -> "u"
+                        "ф" -> "f"
+                        "х" -> "h"
+                        "ц" -> "c"
+                        "ч" -> "ch"
+                        "ш" -> "sh"
+                        "щ" -> "sh'"
+                        "ъ" -> ""
+                        "ы" -> "i"
+                        "ь" -> ""
+                        "э" -> "e"
+                        "ю" -> "yu"
+                        "я" -> "ya"
+                        "А" -> "A"
+                        "Б" -> "B"
+                        "В" -> "V"
+                        "Г" -> "G"
+                        "Д" -> "D"
+                        "Е" -> "E"
+                        "Ё" -> "E"
+                        "Ж" -> "ZH"
+                        "З" -> "Z"
+                        "И" -> "I"
+                        "Й" -> "I"
+                        "К" -> "K"
+                        "Л" -> "L"
+                        "М" -> "M"
+                        "Н" -> "N"
+                        "О" -> "O"
+                        "П" -> "P"
+                        "Р" -> "R"
+                        "С" -> "S"
+                        "Т" -> "T"
+                        "У" -> "U"
+                        "Ф" -> "F"
+                        "Х" -> "H"
+                        "Ц" -> "C"
+                        "Ч" -> "CH"
+                        "Ш" -> "SH"
+                        "Щ" -> "SH'"
+                        "Ъ" -> ""
+                        "Ы" -> "I"
+                        "Ь" -> ""
+                        "Э" -> "E"
+                        "Ю" -> "YU"
+                        "Я" -> "YA"
+                        " " -> "_"
+                    else -> char
+                }
+            }
+            nickNew = nickNew.replace(divider, "_")
+            return nickNew
+        }
     }
 
     fun toInitials(firstName: String?, lastName: String?): String? {
