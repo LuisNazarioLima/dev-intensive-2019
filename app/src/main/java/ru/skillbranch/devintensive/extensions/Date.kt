@@ -86,11 +86,15 @@ enum class TimeUnits{
 fun plural(i: Int = 0): String? {
     var ost: Float
     var powerFloat: Float = 10F
+    var lastChar: String
 
     if (this == null) {
         return null
     }
-    if (i >= 0) {
+
+    ost = i.toString().substring(i.toString().length-1, i.toString().length).toFloat()
+
+ /*   if (i >= 0) {
         if (i > 10) {
             ost = i - powerFloat.pow(i.toString().length - 1)
         } else {ost = i.toFloat()}
@@ -98,7 +102,7 @@ fun plural(i: Int = 0): String? {
         if (i < -10) {
             ost = powerFloat.pow(i.toString().length - 2) - i
         } else {ost = -i.toFloat()}
-    }
+    } */
     return when {
         (i == 0) && this == TimeUnits.SECOND -> "$i секунд"
         (ost.toInt() == 1) && this == TimeUnits.SECOND -> "$i секунду"
