@@ -91,9 +91,13 @@ fun plural(i: Int = 0): String? {
         return null
     }
     if (i >= 0) {
-        ost = i - powerFloat.pow(i.toString().length - 1)
+        if (i > 10) {
+            ost = i - powerFloat.pow(i.toString().length - 1)
+        } else {ost = i.toFloat()}
     } else {
-        ost = powerFloat.pow(i.toString().length - 2) - i
+        if (i < -10) {
+            ost = powerFloat.pow(i.toString().length - 2) - i
+        } else {ost = -i.toFloat()}
     }
     return when {
         (i == 0) && this == TimeUnits.SECOND -> "$i секунд"
