@@ -83,7 +83,7 @@ enum class TimeUnits{
     HOUR,
     DAY;
 
-fun TimeUnits.plural(i: Int = 0): String? {
+fun plural(i: Int = 0): String? {
     var ost: Float
     var powerFloat: Float = 10F
 
