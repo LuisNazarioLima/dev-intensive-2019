@@ -16,6 +16,9 @@ fun String.stripHtml(): String {
     var flagOfDoubleSpace: Boolean = false
     var flagEscape: Boolean = false
 
+    oldLine = oldLine.replace("'", "")
+    oldLine = oldLine.replace("\n", "")
+
     for (char in oldLine) {
         if (char.toString() == "<") {
             flagEndOfHTML = false
@@ -35,13 +38,13 @@ fun String.stripHtml(): String {
             flagOfDoubleSpace =  false
         }
 
-        if (char.toString() == "&" || char.toString() == "'" || char.toString() == "\"") {
+        if (char.toString() == "&") {
             flagEscape =  true
             continue
         }
 
         if (flagEscape) {
-            if (char.toString() == " ") {
+            if (char.toString() == ";") {
                 flagEscape = false
                 continue
             } else {
@@ -49,8 +52,11 @@ fun String.stripHtml(): String {
             }
         }
 
+        //if (char.toString() == "'" || char.toString() == "\"") { continue }
+
         if (flagEndOfHTML) {newLine += char}
 
     }
+    newLine = newLine.replace("  ", " ")
     return newLine
 }
