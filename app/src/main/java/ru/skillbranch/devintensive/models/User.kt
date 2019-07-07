@@ -11,7 +11,8 @@ data class User (
     var rating:Int = 0,
     var respect:Int = 0,
     val lastVisit:Date? = Date(),
-    val isOnline:Boolean = false
+    val isOnline:Boolean = false,
+    var userBilder: Builder
 ){
     var introBit:String = "tu tu t ut uut"
 
@@ -57,4 +58,15 @@ data class User (
             return User(id = "$lastId", firstName = firstName, lastName = lastName)
         }
     }
+
+ /*   fun build(): User{
+        return User(id = userBilder.id,
+                    firstName = userBilder.firstName,
+                    lastName = userBilder.lastName,
+                    avatar = userBilder.avatar,
+                    rating = userBilder.rating,
+                    respect = userBilder.respect,
+                    lastVisit = userBilder.lastVisit,
+                    isOnline = userBilder.isOnline)
+    } */
 }

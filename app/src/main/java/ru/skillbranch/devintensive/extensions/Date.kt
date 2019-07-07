@@ -81,40 +81,42 @@ enum class TimeUnits{
     SECOND,
     MINUTE,
     HOUR,
-    DAY
-}
+    DAY;
 
 fun TimeUnits.plural(i: Int = 0): String? {
     var ost: Float
     var powerFloat: Float = 10F
 
-    if (this == null) {return null}
+    if (this == null) {
+        return null
+    }
     if (i >= 0) {
         ost = i - powerFloat.pow(i.toString().length - 1)
     } else {
         ost = powerFloat.pow(i.toString().length - 2) - i
     }
     return when {
-        (i == 0)      && this == TimeUnits.SECOND -> "$i секунд"
-        (ost.toInt() == 1)      && this == TimeUnits.SECOND -> "$i секунду"
-        (ost.toInt() in 2..4)   && this == TimeUnits.SECOND -> "$i секунды"
+        (i == 0) && this == TimeUnits.SECOND -> "$i секунд"
+        (ost.toInt() == 1) && this == TimeUnits.SECOND -> "$i секунду"
+        (ost.toInt() in 2..4) && this == TimeUnits.SECOND -> "$i секунды"
         (ost.toInt() in 5..100) && this == TimeUnits.SECOND -> "$i секунд"
 
-        (i == 0)      && this == TimeUnits.MINUTE -> "$i минут"
-        (ost.toInt() == 1)      && this == TimeUnits.MINUTE -> "$i минуту"
-        (ost.toInt() in 2..4)   && this == TimeUnits.MINUTE -> "$i минуты"
+        (i == 0) && this == TimeUnits.MINUTE -> "$i минут"
+        (ost.toInt() == 1) && this == TimeUnits.MINUTE -> "$i минуту"
+        (ost.toInt() in 2..4) && this == TimeUnits.MINUTE -> "$i минуты"
         (ost.toInt() in 5..100) && this == TimeUnits.MINUTE -> "$i минут"
 
-        (i == 0)      && this == TimeUnits.HOUR -> "$i часов"
-        (ost.toInt() == 1)      && this == TimeUnits.HOUR -> "$i час"
-        (ost.toInt() in 2..4)   && this == TimeUnits.HOUR -> "$i часа"
+        (i == 0) && this == TimeUnits.HOUR -> "$i часов"
+        (ost.toInt() == 1) && this == TimeUnits.HOUR -> "$i час"
+        (ost.toInt() in 2..4) && this == TimeUnits.HOUR -> "$i часа"
         (ost.toInt() in 5..100) && this == TimeUnits.HOUR -> "$i часов"
 
-        (i == 0)      && this == TimeUnits.DAY -> "$i дней"
-        (ost.toInt() == 1)      && this == TimeUnits.DAY -> "$i день"
-        (ost.toInt() in 2..4)   && this == TimeUnits.DAY -> "$i дня"
+        (i == 0) && this == TimeUnits.DAY -> "$i дней"
+        (ost.toInt() == 1) && this == TimeUnits.DAY -> "$i день"
+        (ost.toInt() in 2..4) && this == TimeUnits.DAY -> "$i дня"
         (ost.toInt() in 5..100) && this == TimeUnits.DAY -> "$i дней"
 
         else -> ""
     }
+}
 }
