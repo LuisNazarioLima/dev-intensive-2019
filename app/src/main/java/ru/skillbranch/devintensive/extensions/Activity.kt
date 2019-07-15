@@ -11,5 +11,5 @@ import kotlinx.android.synthetic.main.activity_main.*
 fun Activity.hideKeyboard() {
     et_message.clearFocus()
     val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-    imm.hideSoftInputFromWindow(iv_send.getWindowToken(), 0)
+    imm.hideSoftInputFromWindow(et_message.getWindowToken(), 0)
 }
