@@ -46,6 +46,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         textTxt.text = benderObj.askQuestion()
         sendBtn.setOnClickListener(this)
 
+
         messageEt.setOnEditorActionListener { textView, i, keyEvent ->
             if (i == EditorInfo.IME_ACTION_DONE){
                 val (phrase, color) = benderObj.listenAnswer(messageEt.text.toString()) //убрал toLowerCase
