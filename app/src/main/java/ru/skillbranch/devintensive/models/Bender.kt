@@ -53,7 +53,7 @@ var wrongAnswer: Short = 0
             override fun nextQuestion(): Question = PROFESSION
 
             override fun validation(input: String): Pair<String, Boolean> {
-                return if (input.substring(0,1) != input.substring(0,1).toUpperCase()) {
+                return if (input.isEmpty() || input.substring(0,1) != input.substring(0,1).toUpperCase()) {
                     "Имя должно начинаться с заглавной буквы" to false
                 } else {
                     "" to true
@@ -63,7 +63,7 @@ var wrongAnswer: Short = 0
         PROFESSION("Назови мою профессию?", listOf("сгибальщик", "bender")){
             override fun nextQuestion(): Question = MATERIAL
             override fun validation(input: String): Pair<String, Boolean> {
-                return if (input.substring(0,1) != input.substring(0,1).toLowerCase()) {
+                return if (input.isEmpty() || input.substring(0,1) != input.substring(0,1).toLowerCase()) {
                     "Профессия должна начинаться со строчной буквы" to false
                 } else {
                     "" to true
@@ -83,7 +83,7 @@ var wrongAnswer: Short = 0
                         break
                     }
                 }
-                return if (errorExist) {
+                return if (input.isEmpty() || errorExist) {
                     "Материал не должен содержать цифр" to false
                 } else {
                     "" to true
@@ -103,7 +103,7 @@ var wrongAnswer: Short = 0
                         break
                     }
                 }
-                return if (errorExist) {
+                return if (input.isEmpty() || errorExist) {
                     "Год моего рождения должен содержать только цифры" to false
                 } else {
                     "" to true
@@ -114,7 +114,7 @@ var wrongAnswer: Short = 0
             override fun nextQuestion(): Question = IDLE
             override fun validation(input: String): Pair<String, Boolean> {
                 var errorExist: Boolean = false
-                if (input.length != 7) {
+                if (input.isEmpty() || input.length != 7) {
                     return "Серийный номер содержит только цифры, и их 7" to false
                 }
                 for (char in input) {
@@ -126,7 +126,7 @@ var wrongAnswer: Short = 0
                         break
                     }
                 }
-                return if (errorExist) {
+                return if (input.isEmpty() || errorExist) {
                     "Серийный номер содержит только цифры, и их 7" to false
                 } else {
                     "" to true
