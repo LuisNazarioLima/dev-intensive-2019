@@ -17,22 +17,23 @@ fun Activity.hideKeyboard() {
     imm.hideSoftInputFromWindow(et_message.windowToken, 0);
 }
 
-fun Activity.isKeyboardOpen(rootView: View): Boolean {
+fun Activity.isKeyboardOpen(): Boolean {
     val visibleBounds = Rect()
-
-    rootView.getRootView().getWindowVisibleDisplayFrame(visibleBounds)
-    val dm = rootView.resources.displayMetrics
-    val heightDiff = rootView.bottom - visibleBounds.bottom
+    tv_text.rootView.getWindowVisibleDisplayFrame(visibleBounds)
+    //tv_text.rootView.getRootView().getWindowVisibleDisplayFrame(visibleBounds)
+    val dm = tv_text.rootView.resources.displayMetrics
+    val heightDiff = tv_text.rootView.bottom - visibleBounds.bottom
 
     return heightDiff > 100 * dm.density
 }
-
-fun Activity.isKeyboardClosed(rootView: View): Boolean {
+//rootView: View = tv_text
+fun Activity.isKeyboardClosed(): Boolean {
     val visibleBounds = Rect()
 
-    rootView.getRootView().getWindowVisibleDisplayFrame(visibleBounds)
-    val dm = rootView.resources.displayMetrics
-    val heightDiff = rootView.bottom - visibleBounds.bottom
+    tv_text.rootView.getWindowVisibleDisplayFrame(visibleBounds)
+    //rootView.getRootView().getWindowVisibleDisplayFrame(visibleBounds)
+    val dm = tv_text.rootView.resources.displayMetrics
+    val heightDiff = tv_text.rootView.bottom - visibleBounds.bottom
 
     return heightDiff < 100 * dm.density
 }
