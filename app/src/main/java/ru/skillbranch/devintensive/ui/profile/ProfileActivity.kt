@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_profile.*
 import ru.skillbranch.devintensive.R
 import ru.skillbranch.devintensive.models.Profile
+import ru.skillbranch.devintensive.utils.Utils
 import ru.skillbranch.devintensive.viewmodels.ProfileViewModel
 
 class ProfileActivity : AppCompatActivity() {
@@ -76,6 +77,8 @@ class ProfileActivity : AppCompatActivity() {
         if(isEditMode) saveProfileInfo()
         isEditMode = !isEditMode
         showCurrentMode(isEditMode)
+
+        if (isEditMode) tv_nick_name.text = Utils.transliteration(et_first_name.toString())
     }
 
         btn_switch_theme.setOnClickListener{
