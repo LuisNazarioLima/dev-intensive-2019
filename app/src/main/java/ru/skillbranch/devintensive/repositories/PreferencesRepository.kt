@@ -8,12 +8,12 @@ import ru.skillbranch.devintensive.models.Profile
 
 object PreferencesRepository {
 
- private const val FIRST_NAME ="FIRST_NAME"
- private const val LAST_NAME ="LAST_NAME"
- private const val ABOUT = "ABOUT"
- private const val REPOSITORY = "REPOSITORY"
- private const val RATING = "RATING"
- private const val RESPECT = "RESPECT"
+    private const val FIRST_NAME ="FIRST_NAME"
+    private const val LAST_NAME ="LAST_NAME"
+    private const val ABOUT = "ABOUT"
+    private const val REPOSITORY = "REPOSITORY"
+    private const val RATING = "RATING"
+    private const val RESPECT = "RESPECT"
     private const val APP_THEME = "APP_THEME"
 
     private val prefs: SharedPreferences by lazy {
