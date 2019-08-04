@@ -107,4 +107,24 @@ object Utils {
 
         return a + b
     }
+
+    fun validationUrl(url: String) : Boolean{
+        if (url.substringAfterLast("/") == "join") {return false}
+        if (url.substringAfterLast("/") == "login") {return false}
+        if (url.substringAfterLast("/") == "security") {return false}
+        if (url.substringAfterLast("/") == "customer-stories") {return false}
+        if (url.substringAfterLast("/") == "nonprofit") {return false}
+        if (url.substringAfterLast("/") == "pricing") {return false}
+        if (url.substringAfterLast("/") == "marketplace") {return false}
+        if (url.substringAfterLast("/") == "events") {return false}
+        if (url.substringAfterLast("/") == "trending") {return false}
+        if (url.substringAfterLast("/") == "collections") {return false}
+        if (url.substringAfterLast("/") == "topics") {return false}
+        if (url.substringAfterLast("/") == "events") {return false}
+        if (url.substringAfterLast("/") == "features") {return false}
+        if (url.substringAfterLast("/") == "enterprise") {return false}
+
+        val regex = Regex(pattern = "(http)?(s)?(://)?(www.)?github.com/([a-zA-Z0-9]*(-)?[a-zA-Z0-9]{2,}[^/])")
+        return regex.matches(url)
+    }
 }
