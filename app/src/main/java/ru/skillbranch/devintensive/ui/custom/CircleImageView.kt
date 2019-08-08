@@ -14,6 +14,7 @@ import android.graphics.drawable.Drawable
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import kotlinx.android.synthetic.main.activity_profile.view.*
+import ru.skillbranch.devintensive.extensions.toDp
 import ru.skillbranch.devintensive.utils.Utils.toInitials
 
 
@@ -88,11 +89,11 @@ class CircleImageView @JvmOverloads constructor(
     }
 
         fun getBorderWidth() : Int {
-            return cv_borderWidth.toInt()
+            return cv_borderWidth.toInt().toDp()
         }
 
         fun setBorderWidth(dp: Int) {
-            cv_borderWidth = dp.toFloat()
+            cv_borderWidth = dp.toDp().toFloat()
             invalidate()
         }
 
