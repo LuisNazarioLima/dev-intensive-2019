@@ -85,7 +85,7 @@ class CircleImageView @JvmOverloads constructor(
             paint.color = cv_borderColor
             paint.style = Paint.Style.STROKE
             paint.strokeWidth = cv_borderWidth
-            canvas.drawCircle((width / 2).toFloat(), (height / 2).toFloat(), radius, paint)
+            canvas.drawCircle((width / 2).toFloat(), (height / 2).toFloat(), radius - cv_borderWidth / 2f, paint)
     }
 
         fun getBorderWidth() : Int {
