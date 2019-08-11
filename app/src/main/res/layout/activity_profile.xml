@@ -39,7 +39,6 @@
                     android:src="@drawable/ic_avatar"
                     android:layout_centerHorizontal="true"
                     app:cv_borderWidth="2dp"/>
-
             <ImageButton
                     android:id="@+id/btn_edit"
                     android:layout_width="@dimen/btn_round_size_40"

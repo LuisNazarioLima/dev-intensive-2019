@@ -25,7 +25,7 @@ class CircleImageView @JvmOverloads constructor(
 ) : ImageView(context, attrs, defStyleAttr) {
     companion object{
         private const val DEFAULT_BORDER_COLOR = Color.WHITE
-        private const val DEFAULT_BORDER_WIDTH = 2.0f
+        private const val DEFAULT_BORDER_WIDTH = 6.0f
     }
 
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
@@ -112,9 +112,9 @@ class CircleImageView @JvmOverloads constructor(
             paint.color = cv_borderColor
             invalidate()
         }
-        //override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        //    super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+        override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+            super.onMeasure(widthMeasureSpec, heightMeasureSpec)
             //val size = Math.min(measuredWidth, measuredHeight)
-            //setMeasuredDimension(size, size)
-        //}
+            setMeasuredDimension(measuredWidth, measuredHeight)
+        }
 }
