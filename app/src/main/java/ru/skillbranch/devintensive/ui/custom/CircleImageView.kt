@@ -70,8 +70,6 @@ class CircleImageView @JvmOverloads constructor(
     }
 
     private fun drawAvatar(canvas: Canvas) {
-
-
         var dra: Drawable? = ContextCompat.getDrawable(context, R.drawable.avatar_default)
         var bit = dra?.toBitmap(width, height)
         canvas.drawBitmap(bit!!, 0f, 0f, paint)
