@@ -11,6 +11,7 @@ import android.view.View
 import ru.skillbranch.devintensive.R
 import android.graphics.Path
 import android.graphics.drawable.Drawable
+import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import kotlinx.android.synthetic.main.activity_profile.view.*
@@ -46,7 +47,7 @@ class CircleImageView @JvmOverloads constructor(
     override fun draw(canvas: Canvas?) {
         val width: Int = width
         val height: Int = height
-        val radius: Float = Math.min(width, height).toFloat() / 2f
+        val radius: Float = Math.min(width, height) / 2f
         mPath.addCircle((width / 2).toFloat(), (height / 2).toFloat(), radius, Path.Direction.CW)
         canvas!!.clipPath(mPath)
         super.draw(canvas)
@@ -100,19 +101,19 @@ class CircleImageView @JvmOverloads constructor(
         }
 
         fun setBorderColor(hex:String) {
-            cv_borderColor = Integer.parseInt(hex, 16)
+            cv_borderColor = Color.parseColor(hex)
             paint.color = cv_borderColor
             invalidate()
         }
 
-        fun setBorderColor(colorId: Int) {
-            cv_borderColor = colorId
+        fun setBorderColor(@ColorRes colorId: Int) {
+            cv_borderColor = resources.getColor(colorId, context.theme)
             paint.color = cv_borderColor
             invalidate()
         }
         override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
             super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-            //val size = Math.min(measuredWidth, measuredHeight)
+           // val size = Math.min(measuredWidth, measuredHeight)
             setMeasuredDimension(measuredWidth, measuredHeight)
         }
 }

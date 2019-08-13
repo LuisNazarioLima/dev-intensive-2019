@@ -76,6 +76,7 @@ class ProfileActivity : AppCompatActivity() {
                 v.text = it[k].toString()
             }
         }
+        initAvatarText()
     }
 
     private fun initViews(savedInstanceState: Bundle?) {
