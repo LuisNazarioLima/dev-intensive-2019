@@ -26,7 +26,7 @@ class CircleImageView @JvmOverloads constructor(
 ) : ImageView(context, attrs, defStyleAttr) {
     companion object{
         private const val DEFAULT_BORDER_COLOR = Color.WHITE
-        private const val DEFAULT_BORDER_WIDTH = 6.0f
+        private const val DEFAULT_BORDER_WIDTH = 2.0f
     }
 
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
@@ -47,7 +47,7 @@ class CircleImageView @JvmOverloads constructor(
     override fun draw(canvas: Canvas?) {
         val width: Int = width
         val height: Int = height
-        val radius: Float = Math.min(width, height) / 2f
+        val radius: Float = Math.min(width, height).toFloat() / 2f
         mPath.addCircle((width / 2).toFloat(), (height / 2).toFloat(), radius, Path.Direction.CW)
         canvas!!.clipPath(mPath)
         super.draw(canvas)
@@ -71,6 +71,8 @@ class CircleImageView @JvmOverloads constructor(
     }
 
     private fun drawAvatar(canvas: Canvas) {
+
+
         var dra: Drawable? = ContextCompat.getDrawable(context, R.drawable.avatar_default)
         var bit = dra?.toBitmap(width, height)
         canvas.drawBitmap(bit!!, 0f, 0f, paint)
@@ -101,19 +103,19 @@ class CircleImageView @JvmOverloads constructor(
         }
 
         fun setBorderColor(hex:String) {
-            cv_borderColor = Color.parseColor(hex)
+            cv_borderColor =  Color.parseColor(hex)
             paint.color = cv_borderColor
             invalidate()
         }
 
         fun setBorderColor(@ColorRes colorId: Int) {
-            cv_borderColor = resources.getColor(colorId, context.theme)
+            cv_borderColor = resources.getColor(colorId, context.theme) //colorId
             paint.color = cv_borderColor
             invalidate()
         }
-        override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-            super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-           // val size = Math.min(measuredWidth, measuredHeight)
-            setMeasuredDimension(measuredWidth, measuredHeight)
-        }
+        //override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        //    super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+            //val size = Math.min(measuredWidth, measuredHeight)
+            //setMeasuredDimension(size, size)
+        //}
 }
