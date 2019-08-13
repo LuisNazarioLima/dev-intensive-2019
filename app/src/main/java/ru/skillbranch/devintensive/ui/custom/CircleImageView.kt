@@ -62,8 +62,8 @@ class CircleImageView @JvmOverloads constructor(
               //  drawAvatar(canvas)
              //   drawText(canvas)
             //}
-            setBorderWidth(6)
-            getBorderWidth()
+            //setBorderWidth(6)
+            //getBorderWidth()
         }
 
     private fun drawText(canvas: Canvas) {
@@ -100,7 +100,7 @@ class CircleImageView @JvmOverloads constructor(
         }
 
         fun setBorderWidth(@Dimension dp: Int) {
-            cv_borderWidth = dp.toFloat()
+            cv_borderWidth = dp.toPx().toFloat()
             Log.d("SetBorder","SetBorder $cv_borderWidth")
             invalidate()
         }
