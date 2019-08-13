@@ -62,7 +62,7 @@ class CircleImageView @JvmOverloads constructor(
              //   drawText(canvas)
             //}
             //setBorderWidth(6)
-            //getBorderWidth()
+            //getBorderColor()
         }
 
     private fun drawText(canvas: Canvas) {
@@ -105,6 +105,7 @@ class CircleImageView @JvmOverloads constructor(
         }
 
         fun getBorderColor():Int {
+            Log.d("getBorderColor","GetBorderColor $cv_borderColor")
             return cv_borderColor
         }
 
