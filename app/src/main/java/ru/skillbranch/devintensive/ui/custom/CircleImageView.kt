@@ -11,11 +11,13 @@ import android.view.View
 import ru.skillbranch.devintensive.R
 import android.graphics.Path
 import android.graphics.drawable.Drawable
+import android.util.Log
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import kotlinx.android.synthetic.main.activity_profile.view.*
 import ru.skillbranch.devintensive.extensions.toDp
+import ru.skillbranch.devintensive.extensions.toPx
 import ru.skillbranch.devintensive.utils.Utils.toInitials
 
 
@@ -90,11 +92,13 @@ class CircleImageView @JvmOverloads constructor(
     }
 
         fun getBorderWidth() : Int {
-            return cv_borderWidth.toInt()
+            Log.d("GetBorder","GetBorder ${cv_borderWidth.toInt().toPx()}")
+            return cv_borderWidth.toInt().toPx()
         }
 
         fun setBorderWidth(dp: Int) {
             cv_borderWidth = dp.toDp().toFloat()
+            Log.d("SetBorder","SetBorder $cv_borderWidth")
             invalidate()
         }
 
