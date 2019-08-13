@@ -113,9 +113,9 @@ class CircleImageView @JvmOverloads constructor(
             paint.color = cv_borderColor
             invalidate()
         }
-        //override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        //    super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+        override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+            super.onMeasure(widthMeasureSpec, heightMeasureSpec)
             //val size = Math.min(measuredWidth, measuredHeight)
-            //setMeasuredDimension(size, size)
-        //}
+            setMeasuredDimension(measuredWidth, measuredHeight)
+        }
 }

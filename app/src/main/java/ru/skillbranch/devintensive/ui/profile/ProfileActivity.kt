@@ -1,6 +1,5 @@
 package ru.skillbranch.devintensive.ui.profile
 
-import android.graphics.Color
 import android.graphics.ColorFilter
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
@@ -18,8 +17,6 @@ import ru.skillbranch.devintensive.R
 import ru.skillbranch.devintensive.models.Profile
 import ru.skillbranch.devintensive.viewmodels.ProfileViewModel
 import android.text.TextWatcher
-import ru.skillbranch.devintensive.models.AvatarInitialsDrawable
-import ru.skillbranch.devintensive.utils.Utils.toInitials
 import ru.skillbranch.devintensive.utils.Utils.validationUrl
 
 class ProfileActivity : AppCompatActivity() {
@@ -33,24 +30,12 @@ class ProfileActivity : AppCompatActivity() {
     var isEditMode = false
     lateinit var viewFields : Map<String, TextView>
     var isError = false
-    private lateinit var avatarInitial : AvatarInitialsDrawable
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
         initViews(savedInstanceState)
         initViewModel()
-        initAvatarText()
-    }
-
-    private fun initAvatarText() {
-        avatarInitial = AvatarInitialsDrawable()
-        //avatarInitial.setColor(resources.getColor(R.color.color_accent, theme))
-        avatarInitial.alpha = 0
-        if (et_first_name.text.toString().isNotEmpty() or et_last_name.text.toString().isNotEmpty()) {
-            avatarInitial.setText(toInitials(et_first_name.text.toString(), et_last_name.text.toString()))
-            iv_avatar.setImageDrawable(avatarInitial)
-        }
     }
 
 
@@ -60,14 +45,13 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun initViewModel(){
-        viewModel = ViewModelProviders.of(this).get(ProfileViewModel::class.java)
+        viewModel =ViewModelProviders.of(this).get(ProfileViewModel::class.java)
         viewModel.getProfileData().observe(this, Observer { updateUI(it) })
         viewModel.getTheme().observe(this, Observer { updateTheme(it) })
     }
 
     private fun updateTheme(mode: Int) {
         delegate.setLocalNightMode(mode)
-        initAvatarText()
     }
 
     private fun updateUI(profile: Profile) {
@@ -76,7 +60,6 @@ class ProfileActivity : AppCompatActivity() {
                 v.text = it[k].toString()
             }
         }
-        initAvatarText()
     }
 
     private fun initViews(savedInstanceState: Bundle?) {
@@ -152,10 +135,6 @@ class ProfileActivity : AppCompatActivity() {
 
             background.colorFilter = filter
             setImageDrawable(icon)
-        }
-        //ставим фортку с инициалами
-        if (!isEdit) {
-            initAvatarText()
         }
     }
 

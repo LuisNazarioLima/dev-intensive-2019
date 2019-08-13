@@ -96,11 +96,11 @@ object Utils {
         }
     }
 
-    fun toInitials(firstName: String?, lastName: String?): String {
+    fun toInitials(firstName: String?, lastName: String?): String? {
         var a:String
         var b:String
 
-        if (firstName.isNullOrBlank() and lastName.isNullOrBlank()) throw return ""
+        if (firstName.isNullOrBlank() and lastName.isNullOrBlank()) throw return null
 
         if (firstName.isNullOrBlank()) a = "" else a = firstName.substring(0,1).toUpperCase()
         if (lastName.isNullOrBlank()) b = "" else b = lastName.substring(0,1).toUpperCase()
