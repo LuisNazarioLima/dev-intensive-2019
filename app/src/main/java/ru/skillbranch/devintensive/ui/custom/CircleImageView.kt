@@ -90,7 +90,7 @@ class CircleImageView @JvmOverloads constructor(
     }
 
         fun getBorderWidth() : Int {
-            return cv_borderWidth.toInt().toDp()
+            return cv_borderWidth.toInt()
         }
 
         fun setBorderWidth(dp: Int) {
