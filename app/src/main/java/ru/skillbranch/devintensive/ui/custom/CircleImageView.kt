@@ -13,6 +13,7 @@ import android.graphics.Path
 import android.graphics.drawable.Drawable
 import android.util.Log
 import androidx.annotation.ColorRes
+import androidx.annotation.Dimension
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import kotlinx.android.synthetic.main.activity_profile.view.*
@@ -61,8 +62,8 @@ class CircleImageView @JvmOverloads constructor(
               //  drawAvatar(canvas)
              //   drawText(canvas)
             //}
-            //setBorderWidth(6)
-            //getBorderColor()
+            setBorderWidth(6)
+            getBorderWidth()
         }
 
     private fun drawText(canvas: Canvas) {
@@ -93,13 +94,13 @@ class CircleImageView @JvmOverloads constructor(
             canvas.drawCircle((width / 2).toFloat(), (height / 2).toFloat(), radius - cv_borderWidth / 2f, paint)
     }
 
-        fun getBorderWidth() : Int {
+        @Dimension fun getBorderWidth() : Int {
             Log.d("GetBorder","GetBorder ${cv_borderWidth.toInt().toDp()}")
             return cv_borderWidth.toInt().toDp()
         }
 
-        fun setBorderWidth(dp: Int) {
-            cv_borderWidth = dp.toDp().toFloat()
+        fun setBorderWidth(@Dimension dp: Int) {
+            cv_borderWidth = dp.toFloat()
             Log.d("SetBorder","SetBorder $cv_borderWidth")
             invalidate()
         }
