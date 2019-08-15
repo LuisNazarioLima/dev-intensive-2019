@@ -22,6 +22,14 @@ import android.util.Log
 import ru.skillbranch.devintensive.models.AvatarInitialsDrawable
 import ru.skillbranch.devintensive.utils.Utils.toInitials
 import ru.skillbranch.devintensive.utils.Utils.validationUrl
+import android.R.attr.data
+import android.R.attr.resource
+import android.content.res.TypedArray
+import android.util.TypedValue
+
+
+
+
 
 class ProfileActivity : AppCompatActivity() {
 
@@ -34,14 +42,14 @@ class ProfileActivity : AppCompatActivity() {
     var isEditMode = false
     lateinit var viewFields : Map<String, TextView>
     var isError = false
-    //private lateinit var avatarInitial: AvatarInitialsDrawable
+    private lateinit var avatarInitial: AvatarInitialsDrawable
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
         initViews(savedInstanceState)
         initViewModel()
-        //initAvatarText()
+        initAvatarText()
     }
 
 
@@ -56,20 +64,23 @@ class ProfileActivity : AppCompatActivity() {
         viewModel.getTheme().observe(this, Observer { updateTheme(it) })
     }
 
-   // private fun initAvatarText() {
-   //    avatarInitial = AvatarInitialsDrawable()
-   //     avatarInitial.alpha = 0
-   //     if (et_first_name.text.toString().isNotEmpty() or et_last_name.text.toString().isNotEmpty()) {
-   //         avatarInitial.setText(toInitials(et_first_name.text.toString(), et_last_name.text.toString()))
-   //         iv_avatar.setImageDrawable(avatarInitial)
-   //     } else {
-   //         iv_avatar.setImageDrawable(resources.getDrawable(R.drawable.avatar_default, theme))
-   //     }
-   // }
+
+
+    private fun initAvatarText() {
+       avatarInitial = AvatarInitialsDrawable()
+        avatarInitial.alpha = 255
+        if (et_first_name.text.toString().isNotEmpty() or et_last_name.text.toString().isNotEmpty()) {
+            avatarInitial.setColor(resources.getColor(R.color.color_accent_night, theme))
+            avatarInitial.setText(toInitials(et_first_name.text.toString(), et_last_name.text.toString()))
+            iv_avatar.setImageDrawable(avatarInitial)
+        } else {
+            iv_avatar.setImageDrawable(resources.getDrawable(R.drawable.avatar_default, theme))
+        }
+    }
 
     private fun updateTheme(mode: Int) {
         delegate.setLocalNightMode(mode)
-        //initAvatarText()
+        initAvatarText()
     }
 
     private fun updateUI(profile: Profile) {
@@ -78,7 +89,7 @@ class ProfileActivity : AppCompatActivity() {
                 v.text = it[k].toString()
             }
         }
-        //initAvatarText()
+        initAvatarText()
     }
 
     private fun initViews(savedInstanceState: Bundle?) {
@@ -155,9 +166,9 @@ class ProfileActivity : AppCompatActivity() {
             background.colorFilter = filter
             setImageDrawable(icon)
         }
-        //if (!isEdit) {
-        //    initAvatarText()
-        //}
+        if (!isEdit) {
+            initAvatarText()
+        }
     }
 
     private fun saveProfileInfo(){
