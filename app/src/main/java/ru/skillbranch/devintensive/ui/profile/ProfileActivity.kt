@@ -34,14 +34,14 @@ class ProfileActivity : AppCompatActivity() {
     var isEditMode = false
     lateinit var viewFields : Map<String, TextView>
     var isError = false
-    private lateinit var avatarInitial: AvatarInitialsDrawable
+    //private lateinit var avatarInitial: AvatarInitialsDrawable
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
         initViews(savedInstanceState)
         initViewModel()
-        initAvatarText()
+        //initAvatarText()
     }
 
 
@@ -56,21 +56,20 @@ class ProfileActivity : AppCompatActivity() {
         viewModel.getTheme().observe(this, Observer { updateTheme(it) })
     }
 
-    private fun initAvatarText() {
-        avatarInitial = AvatarInitialsDrawable()
-        avatarInitial.alpha = 0
-        if (et_first_name.text.toString().isNotEmpty() or et_last_name.text.toString().isNotEmpty()) {
-            avatarInitial.setText(toInitials(et_first_name.text.toString(), et_last_name.text.toString()))
-            iv_avatar.setImageDrawable(avatarInitial)
-        } else {
-            iv_avatar.setImageDrawable(resources.getDrawable(R.drawable.avatar_default, theme))
-        }
-        //Log.d("initAvatar", "Init avatar logo ${theme.toString()}")
-    }
+   // private fun initAvatarText() {
+   //    avatarInitial = AvatarInitialsDrawable()
+   //     avatarInitial.alpha = 0
+   //     if (et_first_name.text.toString().isNotEmpty() or et_last_name.text.toString().isNotEmpty()) {
+   //         avatarInitial.setText(toInitials(et_first_name.text.toString(), et_last_name.text.toString()))
+   //         iv_avatar.setImageDrawable(avatarInitial)
+   //     } else {
+   //         iv_avatar.setImageDrawable(resources.getDrawable(R.drawable.avatar_default, theme))
+   //     }
+   // }
 
     private fun updateTheme(mode: Int) {
         delegate.setLocalNightMode(mode)
-        initAvatarText()
+        //initAvatarText()
     }
 
     private fun updateUI(profile: Profile) {
@@ -79,7 +78,7 @@ class ProfileActivity : AppCompatActivity() {
                 v.text = it[k].toString()
             }
         }
-        initAvatarText()
+        //initAvatarText()
     }
 
     private fun initViews(savedInstanceState: Bundle?) {
