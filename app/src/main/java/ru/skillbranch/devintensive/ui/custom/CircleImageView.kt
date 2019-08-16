@@ -2,14 +2,11 @@ package ru.skillbranch.devintensive.ui.custom
 
 import android.content.Context
 import android.content.res.Resources
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
+import android.graphics.*
 import android.util.AttributeSet
 import android.widget.ImageView
 import android.view.View
 import ru.skillbranch.devintensive.R
-import android.graphics.Path
 import android.graphics.drawable.Drawable
 import android.util.Log
 import androidx.annotation.ColorRes
@@ -126,4 +123,12 @@ class CircleImageView @JvmOverloads constructor(
             //val size = Math.min(measuredWidth, measuredHeight)
             setMeasuredDimension(measuredWidth, measuredHeight)
         }
+
+    override fun setImageDrawable(drawable: Drawable?) {
+        super.setImageDrawable(drawable)
+    }
+
+    override fun setImageBitmap(bm: Bitmap?) {
+        super.setImageBitmap(bm)
+    }
 }

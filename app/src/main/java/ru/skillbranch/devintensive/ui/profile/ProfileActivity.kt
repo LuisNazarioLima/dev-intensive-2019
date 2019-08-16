@@ -1,5 +1,6 @@
 package ru.skillbranch.devintensive.ui.profile
 
+import android.R.attr.*
 import android.graphics.Color
 import android.graphics.ColorFilter
 import android.graphics.PorterDuff
@@ -22,13 +23,10 @@ import android.util.Log
 import ru.skillbranch.devintensive.models.AvatarInitialsDrawable
 import ru.skillbranch.devintensive.utils.Utils.toInitials
 import ru.skillbranch.devintensive.utils.Utils.validationUrl
-import android.R.attr.data
-import android.R.attr.resource
 import android.content.res.TypedArray
 import android.util.TypedValue
-
-
-
+import androidx.core.content.ContextCompat
+import ru.skillbranch.devintensive.App
 
 
 class ProfileActivity : AppCompatActivity() {
