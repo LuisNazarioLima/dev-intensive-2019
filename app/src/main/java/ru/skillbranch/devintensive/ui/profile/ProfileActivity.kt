@@ -70,6 +70,7 @@ class ProfileActivity : AppCompatActivity() {
                     PorterDuff.Mode.SRC_IN
             )
         }
+        avatarInitial.setColor(resources.getColor(R.color.color_accent_night, theme))
         avatarInitial.colorFilter = filter
         avatarInitial.alpha = 255
         if (et_first_name.text.toString().isNotEmpty() or et_last_name.text.toString().isNotEmpty()) {
