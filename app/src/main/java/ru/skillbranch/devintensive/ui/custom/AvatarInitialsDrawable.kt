@@ -1,10 +1,11 @@
-package ru.skillbranch.devintensive.models
+package ru.skillbranch.devintensive.ui.custom
 
 import android.content.res.Resources
 import android.graphics.*
 import android.graphics.drawable.Drawable
 import android.graphics.Paint.ANTI_ALIAS_FLAG
 import androidx.core.view.ViewCompat.setAlpha
+import ru.skillbranch.devintensive.R
 
 class AvatarInitialsDrawable : Drawable() {
     private val mPaint = Paint(ANTI_ALIAS_FLAG)
@@ -39,6 +40,8 @@ class AvatarInitialsDrawable : Drawable() {
         val height = bounds.height()
         val radius: Float = Math.min(width, height).toFloat() / 2f
         mPath.reset()
+        mPaint.color = R.attr.colorAccent
+        mPaint.alpha = 255
         mPath.addCircle((width / 2).toFloat(), (height / 2).toFloat(), radius, Path.Direction.CW)
         mPath.close()
     }

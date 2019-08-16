@@ -1,14 +1,11 @@
 package ru.skillbranch.devintensive.ui.profile
 
-import android.R.attr.*
-import android.graphics.Color
 import android.graphics.ColorFilter
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
-import android.view.KeyEvent
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
@@ -19,15 +16,10 @@ import ru.skillbranch.devintensive.R
 import ru.skillbranch.devintensive.models.Profile
 import ru.skillbranch.devintensive.viewmodels.ProfileViewModel
 import android.text.TextWatcher
-import android.util.Log
-import ru.skillbranch.devintensive.models.AvatarInitialsDrawable
+import ru.skillbranch.devintensive.ui.custom.AvatarInitialsDrawable
 import ru.skillbranch.devintensive.utils.Utils.toInitials
 import ru.skillbranch.devintensive.utils.Utils.validationUrl
-import android.content.res.TypedArray
-import android.util.TypedValue
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.content.ContextCompat
-import ru.skillbranch.devintensive.App
 
 
 class ProfileActivity : AppCompatActivity() {
