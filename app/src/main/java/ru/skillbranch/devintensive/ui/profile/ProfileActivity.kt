@@ -72,7 +72,6 @@ class ProfileActivity : AppCompatActivity() {
         }
         avatarInitial.setColor(resources.getColor(R.color.color_accent_night, theme))
         avatarInitial.colorFilter = filter
-        avatarInitial.alpha = 255
         if (et_first_name.text.toString().isNotEmpty() or et_last_name.text.toString().isNotEmpty()) {
             avatarInitial.setText(toInitials(et_first_name.text.toString(), et_last_name.text.toString()))
             iv_avatar.setImageDrawable(avatarInitial)

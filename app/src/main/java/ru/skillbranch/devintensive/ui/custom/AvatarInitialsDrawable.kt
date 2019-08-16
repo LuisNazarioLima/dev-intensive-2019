@@ -13,7 +13,10 @@ class AvatarInitialsDrawable : Drawable() {
     private var initials = ""
 
     override fun draw(canvas: Canvas) {
-        canvas.drawPath(mPath, mPaint)
+        //canvas.drawPath(mPath, mPaint)
+        mPaint.color = R.attr.colorAccent
+        mPaint.alpha = 255
+        canvas.drawRect(0.0f, 0.0f, canvas.width.toFloat(), canvas.height.toFloat(), mPaint)
         mPaint.reset()
         mPaint.color = Color.WHITE
         mPaint.style = Paint.Style.FILL
