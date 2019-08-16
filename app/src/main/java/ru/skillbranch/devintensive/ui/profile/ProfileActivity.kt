@@ -25,6 +25,7 @@ import ru.skillbranch.devintensive.utils.Utils.toInitials
 import ru.skillbranch.devintensive.utils.Utils.validationUrl
 import android.content.res.TypedArray
 import android.util.TypedValue
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import ru.skillbranch.devintensive.App
 
@@ -65,8 +66,20 @@ class ProfileActivity : AppCompatActivity() {
 
 
     private fun initAvatarText() {
-       avatarInitial = AvatarInitialsDrawable()
-        avatarInitial.alpha = 0
+        avatarInitial = AvatarInitialsDrawable()
+        val filter: ColorFilter? = if(viewModel.getTheme().value == AppCompatDelegate.MODE_NIGHT_YES){
+            PorterDuffColorFilter(
+                    resources.getColor(R.color.color_accent_night, theme),
+                    PorterDuff.Mode.SRC_IN
+            )
+        }else{
+            PorterDuffColorFilter(
+                    resources.getColor(R.color.color_accent, theme),
+                    PorterDuff.Mode.SRC_IN
+            )
+        }
+        avatarInitial.colorFilter = filter
+        avatarInitial.alpha = 255
         if (et_first_name.text.toString().isNotEmpty() or et_last_name.text.toString().isNotEmpty()) {
             avatarInitial.setText(toInitials(et_first_name.text.toString(), et_last_name.text.toString()))
             iv_avatar.setImageDrawable(avatarInitial)
@@ -163,9 +176,9 @@ class ProfileActivity : AppCompatActivity() {
             background.colorFilter = filter
             setImageDrawable(icon)
         }
-        if (!isEdit) {
-            initAvatarText()
-        }
+       // if (!isEdit) {
+       //     initAvatarText()
+       // }
     }
 
     private fun saveProfileInfo(){
