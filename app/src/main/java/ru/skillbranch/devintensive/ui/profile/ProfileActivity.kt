@@ -6,7 +6,6 @@ import android.graphics.PorterDuffColorFilter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
-import android.view.KeyEvent
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
@@ -17,7 +16,11 @@ import ru.skillbranch.devintensive.R
 import ru.skillbranch.devintensive.models.Profile
 import ru.skillbranch.devintensive.viewmodels.ProfileViewModel
 import android.text.TextWatcher
+import ru.skillbranch.devintensive.ui.custom.AvatarInitialsDrawable
+import ru.skillbranch.devintensive.utils.Utils.toInitials
 import ru.skillbranch.devintensive.utils.Utils.validationUrl
+import androidx.appcompat.app.AppCompatDelegate
+
 
 class ProfileActivity : AppCompatActivity() {
 
@@ -30,12 +33,14 @@ class ProfileActivity : AppCompatActivity() {
     var isEditMode = false
     lateinit var viewFields : Map<String, TextView>
     var isError = false
+    private lateinit var avatarInitial: AvatarInitialsDrawable
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
         initViews(savedInstanceState)
         initViewModel()
+        initAvatarText()
     }
 
 
@@ -50,8 +55,39 @@ class ProfileActivity : AppCompatActivity() {
         viewModel.getTheme().observe(this, Observer { updateTheme(it) })
     }
 
+
+
+    private fun initAvatarText() {
+        if(viewModel.getTheme().value == AppCompatDelegate.MODE_NIGHT_YES){
+            avatarInitial = AvatarInitialsDrawable(resources.getColor(R.color.color_accent_night, theme))
+        }else{
+            avatarInitial = AvatarInitialsDrawable(resources.getColor(R.color.color_accent, theme))
+        }
+ //      avatarInitial = AvatarInitialsDrawable(R.color.color_accent)
+ //       val filter: ColorFilter? = if(viewModel.getTheme().value == AppCompatDelegate.MODE_NIGHT_YES){
+ //           PorterDuffColorFilter(
+ //                   resources.getColor(R.color.color_accent_night, theme),
+ //                   PorterDuff.Mode.SRC_IN
+ //           )
+ //       }else{
+ //           PorterDuffColorFilter(
+ //                   resources.getColor(R.color.color_accent, theme),
+ //                   PorterDuff.Mode.SRC_IN
+ //           )
+ //       }
+ //      //avatarInitial.setColor(resources.getColor(R.color.color_accent_night, theme))
+ //       avatarInitial.colorFilter = filter
+        if (et_first_name.text.toString().isNotEmpty() or et_last_name.text.toString().isNotEmpty()) {
+            avatarInitial.setText(toInitials(et_first_name.text.toString(), et_last_name.text.toString()))
+            iv_avatar.setImageDrawable(avatarInitial)
+        } else {
+            iv_avatar.setImageDrawable(resources.getDrawable(R.drawable.avatar_default, theme))
+        }
+    }
+
     private fun updateTheme(mode: Int) {
         delegate.setLocalNightMode(mode)
+        initAvatarText()
     }
 
     private fun updateUI(profile: Profile) {
@@ -60,6 +96,7 @@ class ProfileActivity : AppCompatActivity() {
                 v.text = it[k].toString()
             }
         }
+        initAvatarText()
     }
 
     private fun initViews(savedInstanceState: Bundle?) {
@@ -136,6 +173,9 @@ class ProfileActivity : AppCompatActivity() {
             background.colorFilter = filter
             setImageDrawable(icon)
         }
+       // if (!isEdit) {
+       //     initAvatarText()
+       // }
     }
 
     private fun saveProfileInfo(){
