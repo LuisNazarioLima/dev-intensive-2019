@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 //видео 02:17:55
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kotlinx.android.extensions.LayoutContainer

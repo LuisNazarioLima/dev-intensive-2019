@@ -1,6 +1,5 @@
 package ru.skillbranch.devintensive.models.data
 
-import android.util.Pair
 import androidx.annotation.VisibleForTesting
 import ru.skillbranch.devintensive.extensions.shortFofmat
 import ru.skillbranch.devintensive.models.BaseMessage
@@ -30,9 +29,10 @@ data class Chat(
     }
 
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
-    fun lastMessageShort(): Pair<String, String?> = when(val lastMessage = messages.lastOrNull()) {
+    //fun lastMessageShort(): Pair<String, String?> = when(val lastMessage = messages.lastOrNull()) {
+    fun lastMessageShort(): Pair<String, String> {
         //TODO implement me домашка сделать обрезку символов
-        // return "Сообщений ещё нет" to "@John_Doe"
+         return "Сообщений ещё нет" to "@John_Doe"
     }
 
     private fun isSingle(): Boolean = members.size == 1

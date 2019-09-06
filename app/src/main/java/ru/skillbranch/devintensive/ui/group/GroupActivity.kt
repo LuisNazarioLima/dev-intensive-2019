@@ -9,7 +9,9 @@ import android.view.SearchEvent
 import android.view.View
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.children
 import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.chip.Chip
@@ -128,7 +130,7 @@ class GroupActivity : AppCompatActivity() {
         val views = chip_group.children.associate { view -> view.tag to view }
 
         for((k,v) in views) {
-            if(!users.containsKey(k)) chip_group.RemoveView(v) //видео 2:33:22 конец
+            if(!users.containsKey(k)) chip_group.removeView(v) //видео 2:33:22 конец
             else users.remove(k) //видео 2:31:55
         }
         users.forEach{(_,v)->addChipToGroup(v)}
