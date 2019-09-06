@@ -2,19 +2,20 @@ package ru.skillbranch.devintensive.ui.custom
 
 import android.content.Context
 import android.content.res.Resources
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
+import android.graphics.*
 import android.util.AttributeSet
 import android.widget.ImageView
 import android.view.View
 import ru.skillbranch.devintensive.R
-import android.graphics.Path
 import android.graphics.drawable.Drawable
+import android.util.Log
+import androidx.annotation.ColorRes
+import androidx.annotation.Dimension
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import kotlinx.android.synthetic.main.activity_profile.view.*
 import ru.skillbranch.devintensive.extensions.toDp
+import ru.skillbranch.devintensive.extensions.toPx
 import ru.skillbranch.devintensive.utils.Utils.toInitials
 
 
@@ -25,7 +26,7 @@ class CircleImageView @JvmOverloads constructor(
 ) : ImageView(context, attrs, defStyleAttr) {
     companion object{
         private const val DEFAULT_BORDER_COLOR = Color.WHITE
-        private const val DEFAULT_BORDER_WIDTH = 2.0f
+        private const val DEFAULT_BORDER_WIDTH = 6.0f
     }
 
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
@@ -58,6 +59,8 @@ class CircleImageView @JvmOverloads constructor(
               //  drawAvatar(canvas)
              //   drawText(canvas)
             //}
+            //setBorderWidth(6)
+            //getBorderWidth()
         }
 
     private fun drawText(canvas: Canvas) {
@@ -70,8 +73,6 @@ class CircleImageView @JvmOverloads constructor(
     }
 
     private fun drawAvatar(canvas: Canvas) {
-
-
         var dra: Drawable? = ContextCompat.getDrawable(context, R.drawable.avatar_default)
         var bit = dra?.toBitmap(width, height)
         canvas.drawBitmap(bit!!, 0f, 0f, paint)
@@ -88,33 +89,44 @@ class CircleImageView @JvmOverloads constructor(
             canvas.drawCircle((width / 2).toFloat(), (height / 2).toFloat(), radius - cv_borderWidth / 2f, paint)
     }
 
-        fun getBorderWidth() : Int {
+        @Dimension fun getBorderWidth() : Int {
+            Log.d("GetBorder","GetBorder ${cv_borderWidth.toInt().toDp()}")
             return cv_borderWidth.toInt().toDp()
         }
 
-        fun setBorderWidth(dp: Int) {
-            cv_borderWidth = dp.toDp().toFloat()
+        fun setBorderWidth(@Dimension dp: Int) {
+            cv_borderWidth = dp.toPx().toFloat()
+            Log.d("SetBorder","SetBorder $cv_borderWidth")
             invalidate()
         }
 
         fun getBorderColor():Int {
+            Log.d("getBorderColor","GetBorderColor $cv_borderColor")
             return cv_borderColor
         }
 
         fun setBorderColor(hex:String) {
-            cv_borderColor = Integer.parseInt(hex, 16)
+            cv_borderColor =  Color.parseColor(hex)
             paint.color = cv_borderColor
             invalidate()
         }
 
-        fun setBorderColor(colorId: Int) {
-            cv_borderColor = colorId
+        fun setBorderColor(@ColorRes colorId: Int) {
+            cv_borderColor = resources.getColor(colorId, context.theme) //colorId
             paint.color = cv_borderColor
             invalidate()
         }
-        //override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        //    super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+        override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+            super.onMeasure(widthMeasureSpec, heightMeasureSpec)
             //val size = Math.min(measuredWidth, measuredHeight)
-            //setMeasuredDimension(size, size)
-        //}
+            setMeasuredDimension(measuredWidth, measuredHeight)
+        }
+
+    override fun setImageDrawable(drawable: Drawable?) {
+        super.setImageDrawable(drawable)
+    }
+
+    override fun setImageBitmap(bm: Bitmap?) {
+        super.setImageBitmap(bm)
+    }
 }
