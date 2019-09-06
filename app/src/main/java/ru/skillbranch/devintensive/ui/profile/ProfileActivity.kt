@@ -58,20 +58,25 @@ class ProfileActivity : AppCompatActivity() {
 
 
     private fun initAvatarText() {
-        avatarInitial = AvatarInitialsDrawable()
-        val filter: ColorFilter? = if(viewModel.getTheme().value == AppCompatDelegate.MODE_NIGHT_YES){
-            PorterDuffColorFilter(
-                    resources.getColor(R.color.color_accent_night, theme),
-                    PorterDuff.Mode.SRC_IN
-            )
+        if(viewModel.getTheme().value == AppCompatDelegate.MODE_NIGHT_YES){
+            avatarInitial = AvatarInitialsDrawable(resources.getColor(R.color.color_accent_night, theme))
         }else{
-            PorterDuffColorFilter(
-                    resources.getColor(R.color.color_accent, theme),
-                    PorterDuff.Mode.SRC_IN
-            )
+            avatarInitial = AvatarInitialsDrawable(resources.getColor(R.color.color_accent, theme))
         }
-        avatarInitial.setColor(resources.getColor(R.color.color_accent_night, theme))
-        avatarInitial.colorFilter = filter
+ //      avatarInitial = AvatarInitialsDrawable(R.color.color_accent)
+ //       val filter: ColorFilter? = if(viewModel.getTheme().value == AppCompatDelegate.MODE_NIGHT_YES){
+ //           PorterDuffColorFilter(
+ //                   resources.getColor(R.color.color_accent_night, theme),
+ //                   PorterDuff.Mode.SRC_IN
+ //           )
+ //       }else{
+ //           PorterDuffColorFilter(
+ //                   resources.getColor(R.color.color_accent, theme),
+ //                   PorterDuff.Mode.SRC_IN
+ //           )
+ //       }
+ //      //avatarInitial.setColor(resources.getColor(R.color.color_accent_night, theme))
+ //       avatarInitial.colorFilter = filter
         if (et_first_name.text.toString().isNotEmpty() or et_last_name.text.toString().isNotEmpty()) {
             avatarInitial.setText(toInitials(et_first_name.text.toString(), et_last_name.text.toString()))
             iv_avatar.setImageDrawable(avatarInitial)
