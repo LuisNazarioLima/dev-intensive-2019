@@ -13,7 +13,7 @@ import ru.skillbranch.devintensive.R
 import ru.skillbranch.devintensive.models.data.UserItem
 
 class UserAdapter(val listener: (UserItem) -> Unit) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
-    private var items: List<UserItem> = listOf()
+    /*private*/ var items: List<UserItem> = listOf()
     //видео 02:17:55 конец
     //видео 02:18:11
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
