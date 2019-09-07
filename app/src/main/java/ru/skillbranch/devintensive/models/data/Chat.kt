@@ -8,6 +8,7 @@ import ru.skillbranch.devintensive.models.TextMessage
 import ru.skillbranch.devintensive.utils.Utils
 import java.util.*
 import ru.skillbranch.devintensive.models.data.User
+import kotlin.reflect.typeOf
 
 data class Chat(
     val id: String,
@@ -19,20 +20,23 @@ data class Chat(
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     fun unreadableMessageCount(): Int {
         //TODO implement me
-        return 0
+        return messages.count()
     }
 
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     fun lastMessageDate(): Date? {
-        //TODO implement me
-        return Date()
+        val lastMessage = messages.lastOrNull()
+        return lastMessage?.date ?: null
     }
 
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
-    //fun lastMessageShort(): Pair<String, String?> = when(val lastMessage = messages.lastOrNull()) {
-    fun lastMessageShort(): Pair<String, String> {
+    fun lastMessageShort(): Pair<String, String?> = when(val lastMessage = messages.lastOrNull()) {
+    //fun lastMessageShort(): Pair<String, String> {
+        is TextMessage -> lastMessage!!.id to lastMessage.from.firstName
+        is ImageMessage -> "${lastMessage.from.firstName} - отправил фото" to lastMessage.from.lastName
+        else -> "Сообщений ещё нет" to "@John_Doe"
         //TODO implement me домашка сделать обрезку символов
-         return "Сообщений ещё нет" to "@John_Doe"
+         //return "Сообщений ещё нет" to "@John_Doe"
     }
 
     private fun isSingle(): Boolean = members.size == 1
