@@ -44,7 +44,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.2.0'
 }
 
-/*
 tasks.withType(Test) {
     testLogging {
         exceptionFormat "full"
@@ -55,4 +54,4 @@ tasks.withType(Test) {
         showStackTraces true
         info.exceptionFormat = "full"
     }
-} */
+}

@@ -19,8 +19,8 @@ data class Chat(
 ) {
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     fun unreadableMessageCount(): Int {
-        //TODO implement me
-        return messages.count()
+        val unreaded = messages.count { it.isReaded == false }
+        return unreaded
     }
 
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
@@ -32,7 +32,7 @@ data class Chat(
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     fun lastMessageShort(): Pair<String, String?> = when(val lastMessage = messages.lastOrNull()) {
     //fun lastMessageShort(): Pair<String, String> {
-        is TextMessage -> lastMessage!!.id to lastMessage.from.firstName
+        is TextMessage -> lastMessage.text!! to lastMessage.from.firstName
         is ImageMessage -> "${lastMessage.from.firstName} - отправил фото" to lastMessage.from.lastName
         else -> "Сообщений ещё нет" to "@John_Doe"
         //TODO implement me домашка сделать обрезку символов
