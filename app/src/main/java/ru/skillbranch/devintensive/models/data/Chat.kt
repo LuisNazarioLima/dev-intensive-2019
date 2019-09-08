@@ -7,8 +7,6 @@ import ru.skillbranch.devintensive.models.ImageMessage
 import ru.skillbranch.devintensive.models.TextMessage
 import ru.skillbranch.devintensive.utils.Utils
 import java.util.*
-import ru.skillbranch.devintensive.models.data.User
-import kotlin.reflect.typeOf
 
 data class Chat(
     val id: String,
