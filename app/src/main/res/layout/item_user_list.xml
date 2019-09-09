@@ -26,12 +26,12 @@
     <View
             android:id="@+id/sv_indicator"
             android:layout_width="12dp"
-        android:layout_height="12dp"
-        android:background="@drawable/bg_indicator"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@id/tv_user_name"
-        android:visibility="gone"
-        tools:visibility="visible"/>
+            android:layout_height="12dp"
+            android:background="@drawable/bg_indicator"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@id/tv_user_name"
+            android:visibility="gone"
+            tools:visibility="visible"/>
 
     <TextView
         android:id="@+id/tv_user_name"
