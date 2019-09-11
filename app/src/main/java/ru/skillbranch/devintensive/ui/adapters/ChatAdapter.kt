@@ -123,7 +123,6 @@ class ChatAdapter(val listener : (ChatItem) -> Unit) : RecyclerView.Adapter<Chat
         override fun bind(item:ChatItem, listener: (ChatItem)->Unit){
             iv_avatar_group.setInitials(item.initials)
 
-            sv_indicator.visibility = if(item.isOnline) View.VISIBLE else View.GONE
             with(tv_date_group){
                 visibility = if(item.lastMessageDate != null) View.VISIBLE else View.GONE
                 text = item.lastMessageDate
