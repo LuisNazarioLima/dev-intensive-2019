@@ -1,23 +1,20 @@
 package ru.skillbranch.devintensive.viewmodels
-//01:51:35
-import androidx.lifecycle.Transformations
+
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import ru.skillbranch.devintensive.extensions.mutableLiveData
 import ru.skillbranch.devintensive.models.data.ChatItem
-import ru.skillbranch.devintensive.models.data.UserItem
 import ru.skillbranch.devintensive.repositories.ChatRepository
-import ru.skillbranch.devintensive.utils.DataGenerator
 
-class MainViewModel : ViewModel() {
+class ArchiveViewModel : ViewModel() {
     private val query = mutableLiveData("")
     private val chatRepository = ChatRepository
     private val chats = Transformations.map(chatRepository.loadChats()) { chats ->
-        return@map chats.filter { !it.isArchived }
-                .map { it.toChatItem()}
-                .sortedBy { it.id.toInt()}
-            .plus(chats.filter { it.isArchived }.map { it.toChatItem() }.takeLast(1))
+        return@map chats.filter { it.isArchived }
+            .map { it.toChatItem()}
+            .sortedBy { it.id.toInt()}
     }
 
     fun getChatData() : LiveData<List<ChatItem>> {
@@ -53,4 +50,3 @@ class MainViewModel : ViewModel() {
         query.value = text
     }
 }
-//01:51:35 конец

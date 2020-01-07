@@ -40,7 +40,22 @@ data class Chat(
     private fun isSingle(): Boolean = members.size == 1
 //1:55:46
     fun toChatItem(): ChatItem {
-        return if (isSingle()) {
+    return if (isArchived) {
+        ChatItem(
+            id,
+            "",
+            "",
+            "Архив чатов",
+            lastMessageShort().first,
+            unreadableMessageCount(),
+            lastMessageDate()?.shortFofmat(),
+            false,
+            ChatType.ARCHIVE,
+            lastMessageShort().second
+        )
+    } else {
+
+        if (isSingle()) {
             val user = members.first()
             ChatItem(
                 id,
@@ -67,6 +82,7 @@ data class Chat(
             )
         }
     }
+}
 }
 
 enum class ChatType{
